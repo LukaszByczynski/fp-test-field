@@ -27,5 +27,12 @@ lazy val benchmark = project
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7")
   )
 
+lazy val kafka = project
+  .settings(
+    libraryDependencies ++= {
+      KafkaMonix ++ Logback
+    }
+  )
+
 lazy val fp_test_field = (project in file("."))
   .aggregate(benchmark, workshop)

@@ -31,4 +31,8 @@ object Dependencies {
   val Logback = Seq(
     "ch.qos.logback" % "logback-classic" % "1.2.3"
   )
+
+  val KafkaMonix = Seq(
+    "io.monix" %% "monix-kafka-1x" % "1.0.0-RC1"
+  )
 }
