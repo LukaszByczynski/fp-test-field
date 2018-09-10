@@ -34,5 +34,10 @@ lazy val kafka = project
     }
   )
 
+lazy val cats_effect = (project in file("cats-effect"))
+  .settings(
+    libraryDependencies ++= CatsEffect
+  )
+
 lazy val fp_test_field = (project in file("."))
-  .aggregate(benchmark, workshop)
+  .aggregate(benchmark, workshop, kafka, cats_effect)
