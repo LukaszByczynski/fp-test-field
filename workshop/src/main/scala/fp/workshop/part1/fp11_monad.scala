@@ -17,10 +17,11 @@ object fp11_monad {
       val buf = List.newBuilder[B]
 
       @tailrec def go(lists: List[List[Either[A, B]]]): Unit = lists match {
-        case (ab :: abs) :: tail => ab match {
-          case Right(b) => buf += b; go(abs :: tail)
-          case Left(a) => go(f(a) :: abs :: tail)
-        }
+        case (ab :: abs) :: tail =>
+          ab match {
+            case Right(b) => buf += b; go(abs :: tail)
+            case Left(a) => go(f(a) :: abs :: tail)
+          }
         case Nil :: tail => go(tail)
         case Nil => ()
       }
@@ -29,6 +30,5 @@ object fp11_monad {
       buf.result
     }
   }
-
 
 }

@@ -51,7 +51,6 @@ object fp04_implicits {
 //        override def info[A](a: A): Id[Unit] =  println(s"${a.getClass} $a")
 //      }
 
-
       def apply[F[_]](implicit ufo: Ufo[F]): Ufo[F] = ufo
       implicit def deriveUfo: Ufo[Id] = new Ufo[Id] {
         println("alloc")

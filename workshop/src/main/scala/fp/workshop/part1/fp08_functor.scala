@@ -4,6 +4,7 @@ object fp08_functor {
   import cats.Functor
 
   object fmap {
+
     val listFunctor: Functor[List] = new Functor[List] {
       override def map[A, B](fa: List[A])(f: A => B): List[B] = ???
     }

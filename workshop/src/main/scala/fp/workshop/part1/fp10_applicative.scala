@@ -4,6 +4,7 @@ object fp10_applicative {
   import cats.Applicative
 
   object syntax {
+
     val listApplicative = new Applicative[List] {
       override def pure[A](x: A): List[A] = ???
 

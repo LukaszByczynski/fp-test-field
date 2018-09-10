@@ -12,7 +12,7 @@ object fp02_types {
 
     final case class B(foo: Int)
 
-    val to: A => B = (a: A) => ???
+    val to: A => B   = (a: A) => ???
     val from: B => A = (b: B) => ???
 
     val isomorphicIdentity: A => A = to andThen from // This is equivalent to identity

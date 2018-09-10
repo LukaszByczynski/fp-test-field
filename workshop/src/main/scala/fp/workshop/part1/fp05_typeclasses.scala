@@ -42,7 +42,7 @@ object fp05_typeclasses {
 
       trait Moto {
         val fuelLevel: Int = 33
-        def drive(): Unit = println("I'm driving on the road")
+        def drive(): Unit  = println("I'm driving on the road")
       }
 
       trait Glider {
