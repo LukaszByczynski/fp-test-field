@@ -8,11 +8,12 @@ ThisBuild / scalacOptions ++= Seq(
   "-language:higherKinds",
   "-Ypartial-unification"
 )
+ThisBuild / updateOptions := updateOptions.value.withLatestSnapshots(true)
 
 lazy val workshop = project
   .settings(
     libraryDependencies ++= {
-      CatsEffectRC2 ++ Http4s ++ CatsMtl ++ Logback ++ ScalaTest
+      Http4s ++ CatsMtl ++ Logback ++ ScalaTest
     },
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7")
   )
@@ -21,10 +22,10 @@ lazy val benchmark = project
   .enablePlugins(JmhPlugin)
   .settings(
     libraryDependencies ++= {
-      CatsEffect ++ CatsMtl ++  ScalaTest
+      CatsEffect ++ CatsMtl ++ ScalaTest
     },
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7")
   )
 
-lazy val root = (project in file("."))
+lazy val fp_test_field = (project in file("."))
   .aggregate(benchmark, workshop)
