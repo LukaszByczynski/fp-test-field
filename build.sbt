@@ -29,15 +29,17 @@ lazy val benchmark = project
 
 lazy val kafka = project
   .settings(
+    resolvers += "Ovotech" at "https://dl.bintray.com/ovotech/maven",
     libraryDependencies ++= {
-      KafkaMonix ++ Logback
+      KafkaMonix ++ Logback ++ Fs2OvoTech
     }
   )
 
 lazy val cats_effect = (project in file("cats-effect"))
   .settings(
+
     libraryDependencies ++= CatsEffect
   )
 
 lazy val fp_test_field = (project in file("."))
-  .aggregate(benchmark, workshop, kafka, cats_effect)
+  .aggregate(benchmark, workshop, kafka, cats_effect  )

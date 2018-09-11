@@ -1,4 +1,5 @@
 package fp.testfield.kafka.monix.producer
+
 import monix.eval.Task
 import monix.execution.Scheduler
 import monix.kafka.config.AutoOffsetReset

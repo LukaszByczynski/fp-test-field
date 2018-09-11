@@ -35,4 +35,8 @@ object Dependencies {
   val KafkaMonix = Seq(
     "io.monix" %% "monix-kafka-1x" % "1.0.0-RC1"
   )
+
+  val Fs2OvoTech = Seq(
+    "com.ovoenergy" %% "fs2-kafka-client" % "0.2.2"
+  )
 }
