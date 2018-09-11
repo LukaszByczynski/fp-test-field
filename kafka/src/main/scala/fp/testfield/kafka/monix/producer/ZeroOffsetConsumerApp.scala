@@ -31,6 +31,7 @@ object ZeroOffsetConsumerApp extends App {
         val props    = config.toProperties
         val consumer = new KafkaConsumer[K, V](props, K.create(), V.create())
         consumer.subscribe(topics.asJava)
+        consumer.poll(0)
         consumer.seekToBeginning(consumer.assignment)
         consumer
       }
