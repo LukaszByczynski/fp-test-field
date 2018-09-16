@@ -37,9 +37,15 @@ lazy val kafka = project
 
 lazy val cats_effect = (project in file("cats-effect"))
   .settings(
-
     libraryDependencies ++= CatsEffect
   )
 
+lazy val http4s = project
+  .settings(
+    libraryDependencies ++= {
+      CatsEffect ++ Http4s ++ Slick ++ Logback
+    }
+  )
+
 lazy val fp_test_field = (project in file("."))
-  .aggregate(benchmark, workshop, kafka, cats_effect  )
+  .aggregate(benchmark, workshop, kafka, cats_effect, http4s)

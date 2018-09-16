@@ -39,4 +39,14 @@ object Dependencies {
   val Fs2OvoTech = Seq(
     "com.ovoenergy" %% "fs2-kafka-client" % "0.2.2"
   )
+
+  val Slick = {
+    val SlickVersion = "3.2.3"
+
+    Seq(
+      "com.typesafe.slick" %% "slick"          % SlickVersion,
+      "com.typesafe.slick" %% "slick-hikaricp" % SlickVersion,
+      "com.h2database"     % "h2"              % "1.4.197"
+    )
+  }
 }
