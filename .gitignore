@@ -12,3 +12,5 @@ TAGS
 
 .idea/
 target/
+
+*.log
