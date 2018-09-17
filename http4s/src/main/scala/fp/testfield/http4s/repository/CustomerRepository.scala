@@ -1,10 +1,13 @@
 package fp.testfield.http4s.repository
-import fp.testfield.http4s.repository.model.DbCustomer
+import java.util.UUID
 
-class CustomerRepository[F[_]](implicit DB: DatabaseProvider[F]) {
+import cats.effect.ConcurrentEffect
 
-  def findAll: fs2.Stream[F, DbCustomer] = {
-    DB.runAsync(DB.customers.)
+class CustomerRepository[F[_]](implicit DB: DatabaseProvider[F], C: ConcurrentEffect[F]) {
+  import slick.jdbc.H2Profile.api._
+
+  def findAll: fs2.Stream[F, (UUID, String)] = {
+    DB.runStream(DB.customers.result)
   }
 
 }

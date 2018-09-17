@@ -1,10 +1,11 @@
 package fp.testfield.http4s.repository
+import java.util.UUID
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
 
 import cats._
+import cats.effect.{Async, ConcurrentEffect}
 import cats.implicits._
-import cats.effect.Async
 import slick.jdbc.H2Profile
 import slick.jdbc.H2Profile.api._
 
@@ -15,7 +16,7 @@ class DatabaseProvider[F[_]](implicit A: Async[F]) {
 
   private implicit val dbExecutionContext: ExecutionContext = {
     val threadFactory = Executors.defaultThreadFactory()
-    val idCounter = new AtomicInteger(0)
+    val idCounter     = new AtomicInteger(0)
 
     ExecutionContext.fromExecutorService(
       Executors.newFixedThreadPool(
@@ -44,19 +45,12 @@ class DatabaseProvider[F[_]](implicit A: Async[F]) {
     }
   }
 
-  private[repository] def runAsync[A](action: StreamingDBIO[_, A]): F[A] = {
-    import scala.util.{Failure, Success}
-    import fs2..reactivestreams._
+  private[repository] def runStream[A](
+    action: StreamingDBIO[_, A]
+  )(implicit C: ConcurrentEffect[F]): fs2.Stream[F, A] = {
+    import fs2.interop.reactivestreams._
 
-    db.stream(action)
-    A.async { cb =>
-
-
-        .onComplete {
-        case Success(value) => cb(Right(value))
-        case Failure(error) => cb(Left(error))
-      }
-    }
+    db.stream(action).toStream.covary[F]
   }
 }
 
@@ -64,7 +58,12 @@ object DatabaseProvider {
 
   def apply[F[_]](implicit A: Async[F]): F[DatabaseProvider[F]] = {
     val dbProvider = new DatabaseProvider[F]
-    val actions = DBIO.seq(dbProvider.customers.schema.create)
+    val actions    = DBIO.seq(
+      dbProvider.customers.schema.create,
+      dbProvider.customers ++= Seq.fill(100000)(
+        (UUID.randomUUID(), s"${UUID.randomUUID().toString.replace("-", "")}@test.com")
+      )
+    )
 
     dbProvider.runAsync(actions).map(_ => dbProvider)
   }

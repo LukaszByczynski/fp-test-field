@@ -11,6 +11,6 @@ class DummyService[F[_]: Effect] extends Http4sDsl[F] {
 
   val jsonService: HttpRoutes[F] = HttpRoutes.of[F] {
 
-    case req @ POST -> Root / "hello" => Ok("")
+    case _ @ POST -> Root / "hello" => Ok("")
   }
 }

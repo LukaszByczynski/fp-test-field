@@ -44,9 +44,10 @@ object Dependencies {
     val SlickVersion = "3.2.3"
 
     Seq(
-      "com.typesafe.slick" %% "slick"          % SlickVersion,
-      "com.typesafe.slick" %% "slick-hikaricp" % SlickVersion,
-      "com.h2database"     % "h2"              % "1.4.197"
+      "com.typesafe.slick"    %% "slick"                % SlickVersion,
+      "com.typesafe.slick"    %% "slick-hikaricp"       % SlickVersion,
+      "com.github.zainab-ali" %% "fs2-reactive-streams" % "0.8.0",
+      "com.h2database"        % "h2"                    % "1.4.197"
     )
   }
 }
