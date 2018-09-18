@@ -39,7 +39,7 @@ class DatabaseProvider[F[_]](implicit A: Async[F]) {
 
     A.async { cb =>
       db.run(action).onComplete {
-        case Success(value) => cb(Right(value))
+        case Success(value) => cb(Right(value))                   
         case Failure(error) => cb(Left(error))
       }
     }
