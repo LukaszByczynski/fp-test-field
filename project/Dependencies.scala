@@ -50,4 +50,8 @@ object Dependencies {
       "com.h2database"        % "h2"                    % "1.4.197"
     )
   }
+
+  val Fs2 = {
+    Seq("co.fs2" %% "fs2-core" % "1.0.0-RC2")
+  }
 }

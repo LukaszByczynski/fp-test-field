@@ -24,7 +24,7 @@ lazy val benchmark = project
     libraryDependencies ++= {
       CatsEffect ++ CatsMtl ++ ScalaTest
     },
-    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7"),
+    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.8"),
     addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.2.4")
   )
 
@@ -48,5 +48,9 @@ lazy val http4s = project
     }
   )
 
-lazy val fp_test_field = (project in file("."))
-  .aggregate(benchmark, workshop, kafka, cats_effect, http4s)
+lazy val fs2 = project
+    .settings(
+      libraryDependencies ++= {
+        Fs2
+      }
+    )
