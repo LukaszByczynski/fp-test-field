@@ -8,11 +8,11 @@ object Dependencies {
 
   val CatsMtl = Seq(
     "org.typelevel" %% "cats-mtl-core" % "0.4.0",
-    "com.olegpy"    %% "meow-mtl"      % "0.1.3"
+    "com.olegpy"    %% "meow-mtl"      % "0.2.0"
   )
 
   val Http4s = {
-    val Http4sVersion = "0.19.0-M3"
+    val Http4sVersion = "0.19.0"
     val CirceVersion  = "0.10.0"
 
     Seq(
@@ -37,7 +37,7 @@ object Dependencies {
   )
 
   val Fs2OvoTech = Seq(
-    "com.ovoenergy" %% "fs2-kafka-client" % "0.2.3"
+    "com.ovoenergy" %% "fs2-kafka-client" % "0.2.5"
   )
 
   val Slick = {
@@ -52,6 +52,6 @@ object Dependencies {
   }
 
   val Fs2 = {
-    Seq("co.fs2" %% "fs2-core" % "1.0.0-RC2")
+    Seq("co.fs2" %% "fs2-core" % "1.0.0")
   }
 }
