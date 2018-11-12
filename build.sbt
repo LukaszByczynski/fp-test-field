@@ -42,6 +42,11 @@ lazy val cats_effect = (project in file("cats-effect"))
     libraryDependencies ++= CatsEffect
   )
 
+lazy val cats_mtl = (project in file("cats-mtl"))
+  .settings(
+    libraryDependencies ++= CatsEffect ++ CatsMtl
+  )
+
 lazy val http4s = project
   .settings(
     libraryDependencies ++= {
