@@ -1,4 +1,4 @@
-package fp.testfield.fs2
+package fp.testfield.effect
 
 import java.util.concurrent.Executors
 
