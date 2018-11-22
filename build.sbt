@@ -39,7 +39,8 @@ lazy val kafka = project
 
 lazy val cats_effect = (project in file("cats-effect"))
   .settings(
-    libraryDependencies ++= CatsEffect
+    libraryDependencies ++= CatsEffect ++ CatsMtl,
+    addCompilerPlugin("org.spire-math" %% "kind-projector"     % "0.9.8"),
   )
 
 lazy val cats_mtl = (project in file("cats-mtl"))
