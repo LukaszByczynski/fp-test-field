@@ -12,26 +12,47 @@ object ParStreamsApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
 
-    def setupProcesssors[F[_]](inputQueue: Queue[F, Int], outputQueue: Queue[F, Int], parallel: Int)(implicit F: Concurrent[F], T: Timer[F])  = {
+    def createProcessor[F[_]](latency: FiniteDuration)(implicit F: Concurrent[F], T: Timer[F]): Pipe[F, Int, Int] = in => {
+      in.evalMap { n =>
+        T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F.point(n)
+      } //.to(outputQueue.enqueue)
+    }
 
-      def createProcessor(latency: FiniteDuration): Pipe[F, Int, Unit] = in => {
+    def setupProcesssors[F[_]](inputQueue: Queue[F, Int], outputQueue: Queue[F, Int], parallel: Int)(
+      implicit F: Concurrent[F], T: Timer[F]
+    ) = {
+
+      def createProcessor(latency: FiniteDuration): Pipe[F, Int, Int] = in => {
         in.evalMap { n =>
-          F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F.point(n)
-        }.fold1(_ + _).to(outputQueue.enqueue)
+          T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F.point(n)
+        } //.to(outputQueue.enqueue)
       }
 
-      val processors = (1 to parallel).map(_ => inputQueue.dequeue.through(createProcessor(Random.nextInt(1000).millis)))
-      Stream.emits(processors).parJoin(parallel)
+//      val processors =
+//        (0 to parallel).map(_ => inputQueue.dequeue.through(createProcessor(Random.nextInt(1000).millis)))
+//      Stream.emits(processors).parJoin(parallel)
+
+      inputQueue.dequeue.through(createProcessor(0.second))
     }
 
     val stream = for {
-      inputQueue <- Stream.eval(Queue.bounded[IO, Int](5))
-      outputQueue <- Stream.eval(Queue.bounded[IO, Int](10))
-      result <- (Stream.range(0, 10).covary[IO].to(inputQueue.enqueue) concurrently setupProcesssors(inputQueue, outputQueue, 5)
-      result <- outputQueue.dequeue
-    } yield result
+      inputQueue <- Stream.eval(Queue.bounded[IO, Int](4))
+      _ <- Stream.range(0, 10).covary[IO].to(inputQueue.enqueue) concurrently
+        Stream(
+          inputQueue.dequeue.through(createProcessor(0.second)).drain,
+          inputQueue.dequeue.through(createProcessor(0.second)).drain
+        ).parJoin(2)
+//      outputQueue <- Stream.eval(Queue.unbounded[IO, Int])
+//      result <- Stream(
+//        setupProcesssors(inputQueue, null, 1)
+//      ).parJoin(1000)
+//        setupProcesssors(inputQueue, null, 1))
+//      result <- outputQueue.dequeue
+    } yield ()
 
-    stream.compile.toList.flatMap(r => IO.delay(println(r))) >> IO.pure(ExitCode.Success)
+    stream.compile.drain.as(ExitCode.Success)
+
+//      .drain.flatMap(r => IO.delay(println(1)))
 
   }
 }
