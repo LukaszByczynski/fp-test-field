@@ -1,4 +1,4 @@
-package fp.testfield.effect
+package fp.testfield.fs2
 
 import cats.effect._
 import cats.implicits._
@@ -13,7 +13,7 @@ final class Exporter(val tag: String) {
   }
 
   def write(record: Record): Unit = {
-    println(s"${System.nanoTime()} w $tag")
+//    println(s"${Thread.currentThread().getName} ${System.nanoTime()} w $tag")
   }
 }
 
