@@ -23,5 +23,6 @@ object BalanceExample extends IOApp {
       .last
       .as(ExitCode.Success)
 
+
   }
 }
