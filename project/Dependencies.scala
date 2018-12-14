@@ -3,7 +3,7 @@ import sbt._
 object Dependencies {
 
   val CatsEffect = Seq(
-    "org.typelevel" %% "cats-effect" % "1.0.0"
+    "org.typelevel" %% "cats-effect" % "1.1.0"
   )
 
   val CatsMtl = Seq(
@@ -33,7 +33,7 @@ object Dependencies {
   )
 
   val KafkaMonix = Seq(
-    "io.monix" %% "monix-kafka-1x" % "1.0.0-RC1"
+    "io.monix" %% "monix-kafka-1x" % "1.0.0-RC2"
   )
 
   val Fs2OvoTech = Seq(
@@ -52,6 +52,6 @@ object Dependencies {
   }
 
   val Fs2 = {
-    Seq("co.fs2" %% "fs2-core" % "1.0.0")
+    Seq("co.fs2" %% "fs2-core" % "1.0.2")
   }
 }

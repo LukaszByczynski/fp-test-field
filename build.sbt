@@ -3,7 +3,7 @@ import sbt.addCompilerPlugin
 
 ThisBuild / organization := "fp.testfield"
 ThisBuild / version      := "1.0.0"
-ThisBuild / scalaVersion := "2.12.7"
+ThisBuild / scalaVersion := "2.12.8"
 ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-language:higherKinds",
@@ -16,7 +16,7 @@ lazy val workshop = project
     libraryDependencies ++= {
       Http4s ++ CatsMtl ++ Logback ++ ScalaTest
     },
-    addCompilerPlugin("org.spire-math"          %% "kind-projector" % "0.9.8")
+    addCompilerPlugin("org.spire-math"          %% "kind-projector" % "0.9.9")
   )
 
 lazy val benchmark = project
@@ -25,7 +25,7 @@ lazy val benchmark = project
     libraryDependencies ++= {
       CatsEffect ++ CatsMtl ++ ScalaTest
     },
-    addCompilerPlugin("org.spire-math"          %% "kind-projector"     % "0.9.8"),
+    addCompilerPlugin("org.spire-math"          %% "kind-projector"     % "0.9.9"),
     addCompilerPlugin("com.olegpy"              %% "better-monadic-for" % "0.2.4")
   )
 
@@ -40,7 +40,7 @@ lazy val kafka = project
 lazy val cats_effect = (project in file("cats-effect"))
   .settings(
     libraryDependencies ++= CatsEffect ++ CatsMtl,
-    addCompilerPlugin("org.spire-math" %% "kind-projector"     % "0.9.8"),
+    addCompilerPlugin("org.spire-math" %% "kind-projector"     % "0.9.9"),
   )
 
 lazy val cats_mtl = (project in file("cats-mtl"))
@@ -60,6 +60,6 @@ lazy val fs2 = project
     libraryDependencies ++= {
       Fs2
     },
-    addCompilerPlugin("org.spire-math" %% "kind-projector"     % "0.9.8"),
+    addCompilerPlugin("org.spire-math" %% "kind-projector"     % "0.9.9"),
     addCompilerPlugin("com.olegpy"     %% "better-monadic-for" % "0.2.4")
   )
