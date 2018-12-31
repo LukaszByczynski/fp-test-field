@@ -13,7 +13,7 @@ object Dependencies {
 
   val Http4s = {
     val Http4sVersion = "0.19.0"
-    val CirceVersion  = "0.10.1"
+    val CirceVersion  = "0.11.0"
 
     Seq(
       "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
