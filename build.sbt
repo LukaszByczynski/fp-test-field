@@ -19,16 +19,6 @@ lazy val workshop = project
     addCompilerPlugin("org.spire-math"          %% "kind-projector" % "0.9.9")
   )
 
-lazy val benchmark = project
-  .enablePlugins(JmhPlugin)
-  .settings(
-    libraryDependencies ++= {
-      CatsEffect ++ CatsMtl ++ ScalaTest
-    },
-    addCompilerPlugin("org.spire-math"          %% "kind-projector"     % "0.9.9"),
-    addCompilerPlugin("com.olegpy"              %% "better-monadic-for" % "0.2.4")
-  )
-
 lazy val kafka = project
   .settings(
     resolvers += "Ovotech" at "https://dl.bintray.com/ovotech/maven",
