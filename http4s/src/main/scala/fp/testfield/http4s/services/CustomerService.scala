@@ -16,7 +16,9 @@ class CustomerService[F[_]: Sync](
     case _ @GET -> Root =>
       Ok(
         fs2.Stream.emit("[") ++
-          customerRepository.findAll.map { case (id, email) => CustomerJson(id, email).asJson.noSpaces }.intersperse(",") ++
+          customerRepository.findAll
+            .map { case (id, email) => CustomerJson(id, email).asJson.noSpaces }
+            .intersperse(",") ++
           fs2.Stream.emit("]")
       )
   }

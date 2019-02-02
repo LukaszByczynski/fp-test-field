@@ -8,7 +8,7 @@ object BalanceExample extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
 
     Stream
-      .emits(List(1, 2, 3, 4, 33, 33,  44, 55, 77, 99, 88, 100, 220, 230, 450, 666))
+      .emits(List(1, 2, 3, 4, 33, 33, 44, 55, 77, 99, 88, 100, 220, 230, 450, 666))
       .covary[IO]
 //      .balanceThrough(2,2)(in => {
 //        in.map(i => println(s"${Thread.currentThread().getName} $i"))
@@ -22,7 +22,6 @@ object BalanceExample extends IOApp {
       .compile
       .last
       .as(ExitCode.Success)
-
 
   }
 }

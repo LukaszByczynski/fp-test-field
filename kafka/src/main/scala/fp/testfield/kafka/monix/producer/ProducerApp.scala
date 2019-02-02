@@ -14,7 +14,7 @@ object ProducerApp extends App {
   val producerCfg = KafkaProducerConfig.default.copy(
     bootstrapServers = List("localhost:9092")
   )
-  val producer = KafkaProducerSink[String,String](producerCfg, scheduler)
+  val producer = KafkaProducerSink[String, String](producerCfg, scheduler)
 
   val result = Observable
     .fromIterable(List("a", "b", "c", "d", "e", "f"))

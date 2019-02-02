@@ -12,19 +12,23 @@ object ParStreamsApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
 
-    def createProcessor[F[_]](latency: FiniteDuration)(implicit F: Concurrent[F], T: Timer[F]): Pipe[F, Int, Int] = in => {
-      in.evalMap { n =>
-        T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F.point(n)
-      } //.to(outputQueue.enqueue)
-    }
+    def createProcessor[F[_]](latency: FiniteDuration)(implicit F: Concurrent[F], T: Timer[F]): Pipe[F, Int, Int] =
+      in => {
+        in.evalMap { n =>
+          T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F
+            .point(n)
+        } //.to(outputQueue.enqueue)
+      }
 
     def setupProcesssors[F[_]](inputQueue: Queue[F, Int], outputQueue: Queue[F, Int], parallel: Int)(
-      implicit F: Concurrent[F], T: Timer[F]
+      implicit F: Concurrent[F],
+      T: Timer[F]
     ) = {
 
       def createProcessor(latency: FiniteDuration): Pipe[F, Int, Int] = in => {
         in.evalMap { n =>
-          T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F.point(n)
+          T.sleep(latency) >> F.delay(println(s"${Thread.currentThread().getName} Pulling out $n from Queue")) >> F
+            .point(n)
         } //.to(outputQueue.enqueue)
       }
 

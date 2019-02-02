@@ -31,11 +31,12 @@ class ParquetPipe[F[_], P[_]](numParalell: Int = 5)(implicit S: Sync[F], P: Para
         } else {
           val z: List[List[Record]] = record.toList.grouped(record.size / numParalell).toList
 
-          def write(a : List[Record]) = for {
+          def write(a: List[Record]) =
+            for {
 //            _ <- S.delay(println(Thread.currentThread().getName))
 //            _ <- T.sleep(Random.nextInt(10).millis)
-            _ <- a.traverse(r => S.delay(exporter.foreach(_.write(r))))
-          } yield ()
+              _ <- a.traverse(r => S.delay(exporter.foreach(_.write(r))))
+            } yield ()
 
           fs2.Pull.eval(z.parTraverse(write)) >> go(tailStream, exporter)
         }

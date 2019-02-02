@@ -39,7 +39,7 @@ class DatabaseProvider[F[_]](implicit A: Async[F]) {
 
     A.async { cb =>
       db.run(action).onComplete {
-        case Success(value) => cb(Right(value))                   
+        case Success(value) => cb(Right(value))
         case Failure(error) => cb(Left(error))
       }
     }
@@ -58,7 +58,7 @@ object DatabaseProvider {
 
   def apply[F[_]](implicit A: Async[F]): F[DatabaseProvider[F]] = {
     val dbProvider = new DatabaseProvider[F]
-    val actions    = DBIO.seq(
+    val actions = DBIO.seq(
       dbProvider.customers.schema.create,
       dbProvider.customers ++= Seq.fill(100000)(
         (UUID.randomUUID(), s"${UUID.randomUUID().toString.replace("-", "")}@test.com")

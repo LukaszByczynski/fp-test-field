@@ -8,5 +8,5 @@ object models {
   final case class CustomerJson(uuid: UUID, email: String)
 
   implicit val healthCheckStatusJsonEncoder: Encoder[HealthCheckStatusJson] = deriveEncoder[HealthCheckStatusJson]
-  implicit val customerJsonEncoder: Encoder[CustomerJson] = deriveEncoder[CustomerJson]
+  implicit val customerJsonEncoder: Encoder[CustomerJson]                   = deriveEncoder[CustomerJson]
 }

@@ -52,7 +52,8 @@ class PartitionPipe[F[_]](implicit S: Sync[F]) {
         def writeRecord = (state: Option[Exporter]) => fs2.Pull.eval(S.delay(state.foreach(_.write(record))))
 
         if (isTagChange(exporter, record.tag)) {
-          val createExporter = fs2.Pull.acquire(S.delay(Some(new Exporter(record.tag))))(st => S.delay(st.foreach(_.close())))
+          val createExporter =
+            fs2.Pull.acquire(S.delay(Some(new Exporter(record.tag))))(st => S.delay(st.foreach(_.close())))
 
           tryPushResultAndReleaseExporter >> createExporter.flatMap { newExporter =>
             writeRecord(newExporter) >> go(tailStream, newExporter)
