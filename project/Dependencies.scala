@@ -3,7 +3,7 @@ import sbt._
 object Dependencies {
 
   val CatsEffect = Seq(
-    "org.typelevel" %% "cats-effect" % "1.1.0"
+    "org.typelevel" %% "cats-effect" % "1.2.0"
   )
 
   val CatsMtl = Seq(
@@ -13,7 +13,7 @@ object Dependencies {
 
   val Http4s = {
     val Http4sVersion = "0.19.0"
-    val CirceVersion  = "0.11.0"
+    val CirceVersion  = "0.11.1"
 
     Seq(
       "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
@@ -41,7 +41,7 @@ object Dependencies {
   )
 
   val Slick = {
-    val SlickVersion = "3.2.3"
+    val SlickVersion = "3.3.0"
 
     Seq(
       "com.typesafe.slick"    %% "slick"                % SlickVersion,
@@ -52,6 +52,6 @@ object Dependencies {
   }
 
   val Fs2 = {
-    Seq("co.fs2" %% "fs2-core" % "1.0.2")
+    Seq("co.fs2" %% "fs2-core" % "1.0.3")
   }
 }
