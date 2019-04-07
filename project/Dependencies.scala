@@ -59,4 +59,13 @@ object Dependencies {
   val Fs2 = {
     Seq("co.fs2" %% "fs2-core" % "1.0.+")
   }
+
+  val ScalaZ = {
+    Seq("org.scalaz" %% "scalaz-core" % "7.2.+")
+  }
+
+  val ZIO = {
+    Seq("org.scalaz" %% "scalaz-zio"                  % "1.0-RC3")
+    Seq("org.scalaz" %% "scalaz-zio-interop-scalaz7x" % "1.0-RC3")
+  }
 }
