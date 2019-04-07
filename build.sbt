@@ -16,7 +16,7 @@ val workshop = project
     libraryDependencies ++= {
       Http4s ++ CatsMtl ++ Logback ++ ScalaTest
     },
-    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.9")
+    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.+")
   )
 
 val kafka = project
@@ -35,7 +35,7 @@ val cats = project
 val cats_effect = (project in file("cats-effect"))
   .settings(
     libraryDependencies ++= CatsEffect ++ CatsMtl,
-    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.9")
+    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.+")
   )
 
 val cats_mtl = (project in file("cats-mtl"))

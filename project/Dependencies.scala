@@ -8,12 +8,12 @@ object Dependencies {
   )
 
   val CatsEffect = Seq(
-    "org.typelevel" %% "cats-effect" % "1.2.0"
+    "org.typelevel" %% "cats-effect" % "1.2.+"
   )
 
   val CatsMtl = Seq(
-    "org.typelevel" %% "cats-mtl-core" % "0.4.0",
-    "com.olegpy"    %% "meow-mtl"      % "0.2.0"
+    "org.typelevel" %% "cats-mtl-core" % "0.5.+",
+    "com.olegpy"    %% "meow-mtl"      % "0.2.+"
   )
 
   val Http4s = {
@@ -30,11 +30,11 @@ object Dependencies {
   }
 
   val ScalaTest = Seq(
-    "org.scalatest" %% "scalatest" % "3.0.5" % Test
+    "org.scalatest" %% "scalatest" % "3.0.+" % Test
   )
 
   val Logback = Seq(
-    "ch.qos.logback" % "logback-classic" % "1.2.3"
+    "ch.qos.logback" % "logback-classic" % "1.2.+"
   )
 
   val KafkaMonix = Seq(
@@ -42,21 +42,21 @@ object Dependencies {
   )
 
   val Fs2OvoTech = Seq(
-    "com.ovoenergy" %% "fs2-kafka-client" % "0.2.5"
+    "com.ovoenergy" %% "fs2-kafka-client" % "0.2.+"
   )
 
   val Slick = {
-    val SlickVersion = "3.3.0"
+    val SlickVersion = "3.3.+"
 
     Seq(
       "com.typesafe.slick"    %% "slick"                % SlickVersion,
       "com.typesafe.slick"    %% "slick-hikaricp"       % SlickVersion,
-      "com.github.zainab-ali" %% "fs2-reactive-streams" % "0.8.0",
-      "com.h2database"        % "h2"                    % "1.4.197"
+      "com.github.zainab-ali" %% "fs2-reactive-streams" % "0.8.+",
+      "com.h2database"        % "h2"                    % "1.4.+"
     )
   }
 
   val Fs2 = {
-    Seq("co.fs2" %% "fs2-core" % "1.0.3")
+    Seq("co.fs2" %% "fs2-core" % "1.0.+")
   }
 }
