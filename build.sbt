@@ -63,6 +63,6 @@ lazy val scalaz = project
   .settings(
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.+"),
     libraryDependencies ++= {
-      ScalaZ ++ ZIO
+      ScalaZ ++ Zio
     }
   )

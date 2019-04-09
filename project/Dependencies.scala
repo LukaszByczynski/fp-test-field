@@ -64,7 +64,7 @@ object Dependencies {
     Seq("org.scalaz" %% "scalaz-core" % "7.2.+")
   }
 
-  val ZIO = {
+  val Zio = {
     Seq("org.scalaz" %% "scalaz-zio"                  % "1.0-RC3")
     Seq("org.scalaz" %% "scalaz-zio-interop-scalaz7x" % "1.0-RC3")
   }
