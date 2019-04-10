@@ -19,7 +19,6 @@ object SleepSortExample extends IOApp {
       .traverse { i =>
         val fiber = for {
           _ <- T.sleep(i.second)
-//        _ <- C.delay(println(i))
           _ <- MS.modify(_ :+ i)
         } yield i
 

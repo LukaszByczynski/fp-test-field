@@ -6,7 +6,7 @@ object FiberExample extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
 
-    val p1 = IO.delay(println("aa"))
+    val p1 = IO.delay(println(s"${Thread.currentThread().getName} aa"))
 
     val z: IO[Unit] = for {
       fiber1 <- p1.start

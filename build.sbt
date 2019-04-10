@@ -11,7 +11,7 @@ ThisBuild / scalacOptions ++= Seq(
 )
 ThisBuild / updateOptions := updateOptions.value.withLatestSnapshots(true)
 
-lazy val workshop = project
+val workshop = project
   .settings(
     libraryDependencies ++= {
       Http4s ++ CatsMtl ++ Logback ++ ScalaTest
@@ -19,7 +19,7 @@ lazy val workshop = project
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.9")
   )
 
-lazy val kafka = project
+val kafka = project
   .settings(
     resolvers += "Ovotech" at "https://dl.bintray.com/ovotech/maven",
     libraryDependencies ++= {
@@ -27,25 +27,30 @@ lazy val kafka = project
     }
   )
 
-lazy val cats_effect = (project in file("cats-effect"))
+val cats = project
+  .settings(
+    libraryDependencies ++= Cats
+  )
+
+val cats_effect = (project in file("cats-effect"))
   .settings(
     libraryDependencies ++= CatsEffect ++ CatsMtl,
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.9")
   )
 
-lazy val cats_mtl = (project in file("cats-mtl"))
+val cats_mtl = (project in file("cats-mtl"))
   .settings(
     libraryDependencies ++= CatsEffect ++ CatsMtl
   )
 
-lazy val http4s = project
+val http4s = project
   .settings(
     libraryDependencies ++= {
       CatsEffect ++ Http4s ++ Slick ++ Logback
     }
   )
 
-lazy val fs2 = project
+val fs2 = project
   .settings(
     libraryDependencies ++= {
       Fs2

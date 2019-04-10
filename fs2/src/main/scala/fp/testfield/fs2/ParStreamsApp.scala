@@ -1,12 +1,9 @@
-package fp.testfield.effect
-
+package fp.testfield.fs2
 import cats.effect._
-import cats.implicits._
-import fs2._
-import fs2.concurrent._
+import fs2.concurrent.Queue
+import fs2.{Pipe, Stream}
 
-import scala.concurrent.duration._
-import scala.util.Random
+import scala.concurrent.duration.FiniteDuration
 
 object ParStreamsApp extends IOApp {
 

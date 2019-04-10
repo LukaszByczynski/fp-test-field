@@ -1,7 +1,8 @@
-package fp.testfield
+package fp.testfield.cats
 
+import cats._
 import cats.implicits._
-import cats.Foldable
+
 import scala.util.Try
 
 object KindProjectorExample extends App {

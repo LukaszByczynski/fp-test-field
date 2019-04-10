@@ -2,6 +2,11 @@ import sbt._
 
 object Dependencies {
 
+  val Cats = Seq(
+    "org.typelevel" %% "cats-core"   % "1.5.0",
+    "org.typelevel" %% "cats-kernel" % "1.5.0"
+  )
+
   val CatsEffect = Seq(
     "org.typelevel" %% "cats-effect" % "1.2.0"
   )
